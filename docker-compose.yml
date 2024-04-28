@@ -5,6 +5,7 @@ services:
     build: .
     command: bundle exec rails db:migrate RAILS_ENV=production
     environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
       RAILS_ENV: production
       DATABASE_URL: postgres://demo_app_production_user:vxHJbpGZZyAM2n6idWF0vb4iLnJX6Hmv@dpg-con206gcmk4c739taa3g-a/demo_app_production
     volumes:
@@ -16,6 +17,7 @@ services:
   db:
     image: postgres
     environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
       POSTGRES_USER: demo_app_production_user
       POSTGRES_PASSWORD: vxHJbpGZZyAM2n6idWF0vb4iLnJX6Hmv
       POSTGRES_DB: demo_app_production
