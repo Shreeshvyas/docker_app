@@ -82,4 +82,5 @@ test:
 #
 production:
   <<: *default
+  host: db
   database: demo_app_production

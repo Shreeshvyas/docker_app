@@ -107,8 +107,17 @@ RUN bundle install
 # Copy the rest of the application code into the container
 COPY . .
 
+#Master Key
+ENV RAILS_MASTER_KEY=cc77a8cacca59c2caaea525b98a514a9
+
 # Expose port 3000 to the outside world
 EXPOSE 3000
+
+# Configure database connection settings
+ENV DATABASE_URL=postgresql://postgres:postgres@db/demo_app_production
+
+# Run any necessary database migrations or setup tasks
+RUN bundle exec rails db:create db:migrate RAILS_ENV=production
 
 # Start the Rails server
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
