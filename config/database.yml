@@ -82,5 +82,4 @@ test:
 #
 production:
   <<: *default
-  host: localhost
   database: demo_app_production
