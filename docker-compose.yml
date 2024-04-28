@@ -5,8 +5,8 @@ services:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     environment:
-      RAILS_ENV: development
-      HOSTNAME_ONE: localhost:3000
+      RAILS_ENV: production
+      # HOSTNAME_ONE: localhost:3000
       HOSTNAME_TWO: docker-app-a82l.onrender.com
     volumes:
       - .:/app
