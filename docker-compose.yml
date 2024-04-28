@@ -3,20 +3,15 @@ version: '3.8'
 services:
   web:
     build: .
-    command: bash -c "bundle exec rails db:create db:migrate RAILS_ENV=production"
+    command: bundle exec rails db:migrate RAILS_ENV=production
     environment:
       RAILS_ENV: production
       DATABASE_URL: postgres://demo_app_production_user:vxHJbpGZZyAM2n6idWF0vb4iLnJX6Hmv@dpg-con206gcmk4c739taa3g-a/demo_app_production
-      POSTGRES_USER: demo_app_production_user
-      POSTGRES_PASSWORD: vxHJbpGZZyAM2n6idWF0vb4iLnJX6Hmv
-      POSTGRES_DB: demo_app_production
     volumes:
       - .:/app
-    ports:
-      - "3000:3000"
     depends_on:
       db:
-        condition: service_healthy   # Wait for the database service to become healthy before starting the web service
+        condition: service_healthy
 
   db:
     image: postgres
@@ -24,8 +19,6 @@ services:
       POSTGRES_USER: demo_app_production_user
       POSTGRES_PASSWORD: vxHJbpGZZyAM2n6idWF0vb4iLnJX6Hmv
       POSTGRES_DB: demo_app_production
-    ports:
-      - "5432:5432"
 
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
