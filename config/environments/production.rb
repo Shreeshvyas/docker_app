@@ -15,6 +15,17 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
 
+  config.database_url = "postgres://demo_app_production_user:vxHJbpGZZyAM2n6idWF0vb4iLnJX6Hmv@db/demo_app_production"
+  
+  config.active_record.database_configurations[:production] = {
+  adapter: 'postgresql',
+  database: 'demo_app_production',
+  username: 'demo_app_production_user',
+  password: 'vxHJbpGZZyAM2n6idWF0vb4iLnJX6Hmv',
+  host: 'dpg-con206gcmk4c739taa3g-a'
+}
+
+
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
   # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
   config.require_master_key = true
